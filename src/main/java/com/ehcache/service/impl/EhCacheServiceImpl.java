@@ -24,13 +24,10 @@ public class EhCacheServiceImpl implements EhCacheService {
     @Cacheable(value = "labelCache", key = "#param")
     public String put(String param) {
         List<Integer> data = new ArrayList<>();
-
         for(int i = 0; i < 5; i++){
             data.add(i);
         }
-
         data.stream().forEach(e -> System.out.println(e));
-
         return "success";
     }
 }

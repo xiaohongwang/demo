@@ -5,7 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -31,13 +33,13 @@ public class SpringBootStarter {
     @Resource
     private EhCacheService ehCacheService;
 
-    @RequestMapping("/put")
-    public String put(String param){
+    @RequestMapping(value = "/put/{param}", method = RequestMethod.GET)
+    public String put(@PathVariable("param") String param){
         return ehCacheService.put(param);
     }
 
-    @RequestMapping("/get")
-    public String get(String param){
-        return ehCacheService.put(param);
+    @RequestMapping(value = "/get/{param}", method = RequestMethod.GET)
+    public String get(@PathVariable("param") String param){
+        return ehCacheService.get(param);
     }
 }
